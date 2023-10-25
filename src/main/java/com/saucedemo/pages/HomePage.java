@@ -3,10 +3,9 @@ package com.saucedemo.pages;
 import com.microsoft.playwright.Page;
 
 public class HomePage {
-
     Page page;
 
-// Locator — — — –
+// Locator — — — -
 
     String productName_1 ="id=item_4_title_link";
 
@@ -24,7 +23,5 @@ public class HomePage {
 
         return productName;}
 
-    public String getProductName() {
-        return null;
-    }
+
 }

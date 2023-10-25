@@ -24,38 +24,32 @@ public class LoginCucumberTest {
     Browser browser = firefox.launch(new BrowserType.LaunchOptions().setHeadless(false));
     Page page = browser.newPage();
 
-
-
-    @Given("User launched SwagLabs application.")
-    public void userLaunchedSwagLabsApplication() {
+    @Given("User launched SwagLabs application")
+    public void setUp() {
         page.navigate("https://www.saucedemo.com/");
         home = new HomePage(page);
         login = new LoginPage(page);
-
     }
-
-    @When("User verifies the Page title.")
-    public void userVerifiesThePageTitle() {
-        String title = page.title();
-        System.out.println(title);
+    @When("User verify the Page title")
+    public void verifyPageTitle() {
+        String title = login.verifyTitle();
         Assert.assertEquals(title, "Swag Labs");
+
     }
-
-
-    @When("User logged in to the app using the username {string} and password {string}")
-    public void userLoggedInToTheAppUsingTheUsernameAndPassword(String username, String password) {
+    //Login into the application
+    @When("User logged in the app using username {string} and password {string}")
+    public void loginIntoTheApplication(String username,String password ) {
         login.loginIntoApplication(username, password);
-
     }
-
-    @Then("User verifies the product name {string}")
-    public void userVerifiesTheProductName(String productname) {
-        String productName = home.getProductName();
+    //Verify product name after login
+    @Then("User verify the product name {string}")
+    public void verifyProductsName(String productname) {
+        String productName = home.productName();
         Assert.assertEquals(productName, productname);
-    }
 
-    @Then("User logout from the application.")
-    public void userLogoutFromTheApplication() {
-        login.logoutApplication();
     }
+    //Logout from application
+    @Then("User logout from the application")
+    public void logoutFromApplication() {
+        login.logoutApplication();}
 }
